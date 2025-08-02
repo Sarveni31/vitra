@@ -69,3 +69,6 @@ if submitted:
         if prob > 0.5:
             st.error(f"⚠️ High Risk of Anemia Dip — Risk Score: {prob:.2%}")
         else:
+            st.success(f"✅ Low Risk of Anemia Dip — Risk Score: {prob:.2%}")
+    except Exception as e:
+        st.error(f"Prediction failed: {e}")

@@ -64,11 +64,17 @@ if submitted:
     # Scale and predict
     try:
         scaled_input = scaler.transform(input_df)
-        prob = model.predict_proba(scaled_input)[0][1]
+        proba = model.predict_proba(scaled_input)[0]
 
-        if prob > 0.5:
-            st.error(f"⚠️ High Risk of Anemia Dip — Risk Score: {prob:.2%}")
+        if len(proba) == 1:
+            st.warning("⚠️ Model was trained on only one class. Cannot reliably predict risk.")
+            st.write(f"Returned probability: {proba[0]:.2%}")
         else:
-            st.success(f"✅ Low Risk of Anemia Dip — Risk Score: {prob:.2%}")
+            prob = proba[1]
+            if prob > 0.5:
+                st.error(f"⚠️ High Risk of Anemia Dip — Risk Score: {prob:.2%}")
+            else:
+                st.success(f"✅ Low Risk of Anemia Dip — Risk Score: {prob:.2%}")
+
     except Exception as e:
         st.error(f"Prediction failed: {e}")

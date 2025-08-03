@@ -12,7 +12,7 @@ SCALER_PATH = "../models/scaler.pkl"
 
 st.set_page_config(page_title="Thalassemia Anemia Risk Predictor")
 
-st.title("🩸 Thalassemia Anemia Risk Predictor")
+st.title("🩸 VITRA ")
 st.markdown("""
 This tool predicts the likelihood of an upcoming **anemia dip** in thalassemia patients, based on clinical inputs.
 """)
